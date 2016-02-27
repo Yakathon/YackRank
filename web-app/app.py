@@ -5,19 +5,19 @@ from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash
 from contextlib import closing
 
-DATABASE = '/tmp/flaskr.db'
+
+DATABASE = '/tmp/yaks.db'
 DEBUG = True
 SECRET_KEY = 'gobears'
 USERNAME = 'berkeley'
 PASSWORD = 'boardreview'
 
+
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
-
 
 def init_db():
     with closing(connect_db()) as db:
@@ -82,18 +82,17 @@ def most_common_word_in_list(L):
 def before_request():
     g.db = connect_db()
 
-
 @app.teardown_request
 def teardown_request(exception):
     db = getattr(g, 'db', None)
     if db is not None:
         db.close()
 
-
 @app.route('/')
 def home():
-    return render_template('home.html')
-
+  init_db()
+  connect_db().text_factory = str
+  return render_template('home.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

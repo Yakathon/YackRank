@@ -2,24 +2,16 @@
 "Harvard University",42.380098,-71.116629
 "Yale University",41.3111,-72.9267
 "Stanford University",37.4300,-122.1700
-"University of Chicago",41.7897,-87.5997
 "Massachusetts Institute of Technology",42.3591,-71.0934
-"Duke University",36.0011,-78.9389
 "University of Pennsylvania",39.9500,-75.1900
 "California Institute of Technology",34.1386,-118.1255
-"Johns Hopkins University",39.241773,-76.936365
 "Dartmouth College",43.7033,-72.2883
 "Northwestern University",42.0531,-87.6742
 "Brown University",41.8262,-71.4032
-"Cornell University",42.2665,-76.2822
 "Vanderbilt University",36.1486,-86.8050
 "Washington University in St. Louis",38.6480,-90.3050
-"Rice University",29.7169,-95.4028
-"University of Notre Dame",41.7030,-86.2390
 "UC Berkeley",37.8700,-122.2590 
-"Emory University",33.7911,-84.3233
 "Georgetown University",38.9072,-77.0728
-"Carnegie Mellon University",40.400921,-80.103623
 "UC Los Angeles",34.0722,-118.4441 
 "University of Southern California",34.0205, -118.2856 
 "University of Virginia",38.0350,-78.5050
@@ -28,11 +20,9 @@
 "University of Michigan—Ann Arbor",42.2828,-83.7347
 "Boston College",42.3351,-71.1704
 "University of North Carolina—Chapel Hill",35.9083,-79.0500
-"New York University",40.7300,-73.9950
 "University of Rochester",43.1283,-77.6283
 "Brandeis University",42.3657,-71.2597 
 "College of William and Mary",37.2711,-76.7075
-"Georgia Institute of Technology",33.7758,-84.3947
 "Case Western Reserve University",41.5042,-81.6084
 "UC Santa Barbara",34.4125,-119.8481
 "UC Irvine",33.6454,-117.8426
@@ -41,7 +31,6 @@
 "Rensselaer Polytechnic Institute",42.7300,-73.6775
 "Tulane University",29.9353,-90.1227
 "UC Davis",38.3402,-121.5312
-"University of Illinois—Urbana-Champaign",40.0618,-88.1343
 "University of Wisconsin—Madison",43.0667,-89.4000
 "Lehigh University",40.6072,-75.3790
 "Northeastern University",42.3389,-71.0903
