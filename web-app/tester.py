@@ -10,18 +10,14 @@ from yaklient import *
 
 
 def databasemaker(location,college_id ):
-    con = sqlite3.connect('/tmp/yaks.db')
+    con = sqlite3.connect('yaks.db')
     cur = con.cursor()
     user = User(location, "21C6CA60E3AA43C4B8C18B943394E111")
-
-    
-    i = college_id
    
     for yak in user.get_yaks():
-        #cur.execute("INSERT INTO raw_yaks VALUES (?,?,?,?);",(i,college_id,yak.message,yak.score))
+        #cur.execute("INSERT INTO raw_yaks VALUES (?,?,?);",(college_id,yak.message,yak.score))
         #con.commit()
         print(yak)
-        i = i + 1
     con.close() # closes connection to database
 
 
@@ -30,15 +26,10 @@ def databasemaker(location,college_id ):
     #file.write(str(yak))
     #file.write("\n")
 
-con = sqlite3.connect('flaskr.db')
+con = sqlite3.connect('yaks.db')
 cur = con.cursor()
-cur.executescript("""
-            DROP TABLE IF EXISTS raw_yaks;
-            CREATE TABLE raw_yaks (yak_id INT, college_id INT, yak_text text,upvotes INT);""") # checks to see if table exists and makes a fresh table.
+con.execute('DELETE FROM raw_yaks')
 con.commit()
-con.close() 
-con = sqlite3.connect('flaskr.db')
-cur = con.cursor()
 cur.execute("""SELECT * FROM colleges""")
 colleges = cur.fetchall()
 for college in  colleges:
@@ -47,7 +38,7 @@ for college in  colleges:
     longitude = college[2]
     print(college[3])
     location = Location(lattitude,longitude)
-    databasemaker(location,college_id)
+    databasemaker(location, college_id)
 
 
 

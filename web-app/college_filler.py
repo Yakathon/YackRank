@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('/tmp/yaks.db')
+conn = sqlite3.connect('yaks.db')
 c = conn.cursor()
 conn.text_factory = str
 def insert(array, words):

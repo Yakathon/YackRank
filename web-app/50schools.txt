@@ -36,7 +36,7 @@
 "Georgia Institute of Technology",33.7758,-84.3947
 "Case Western Reserve University",41.5042,-81.6084
 "UC Santa Barbara",34.4125,-119.8481
-"UC Irvine",33.6454,-117.8426° 
+"UC Irvine",33.6454,-117.8426
 "UC San Diego",32.8810,-117.2380
 "Boston University",42.3496,-71.0997
 "Rensselaer Polytechnic Institute",42.7300,-73.6775
