@@ -6,7 +6,7 @@ from contextlib import closing
 from .operations import populate_db
 
 
-DATABASE = 'yaks.db'
+DATABASE = 'yaks.db' # Our database
 DEBUG = True
 SECRET_KEY = 'gobears'
 USERNAME = 'berkeley'
