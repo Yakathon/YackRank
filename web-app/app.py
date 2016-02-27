@@ -1,6 +1,6 @@
 import sqlite3
 import nltk
-from itertools import groupby as g
+from itertools import groupby as gg
 from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash
 from contextlib import closing
@@ -75,7 +75,14 @@ def common_word(all_words):
 
 # Shamelessly used from Stackoverflow user Hoju
 def most_common_word_in_list(L):
-    return max(g(sorted(L)), key=lambda x, v: (len(list(v)), -L.index(x)))[0]
+    return max(gg(sorted(L)), key=lambda x, v: (len(list(v)), -L.index(x)))[0]
+
+
+def test_print():
+    with app.app_context():
+        print("Hello")
+        for college in query_db('select * from most_valuable_words'):
+            print(college['text'])
 
 
 @app.before_request
@@ -95,4 +102,5 @@ def home():
   return render_template('home.html')
 
 if __name__ == '__main__':
+    test_print()
     app.run(debug=True)
