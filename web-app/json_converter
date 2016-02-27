@@ -1,0 +1,13 @@
+import sqlite3
+
+conn = sqlite3.connect('flaskr.db')
+c = conn.cursor()
+
+def getJson():
+	data = {}
+	counter = 0
+	for row in c.execute('SELECT * FROM colleges ORDER BY college_id'):
+		text = c.execute('SELECT word_text FROM most_valuable_words HAVING college_id = ' + row[0])
+		print(text)
+		data[counter] = {"name":row[3], "latitude":row[1], "longitude":row[2], "word":text[0]}
+	return data
