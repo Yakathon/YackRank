@@ -5,7 +5,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
 from contextlib import closing
 
 
-DATABASE = '/tmp/yaks.db'
+DATABASE = 'yaks.db'
 DEBUG = True
 SECRET_KEY = 'gobears'
 USERNAME = 'berkeley'
@@ -55,6 +55,8 @@ def populateRawYaks(db):
         addYaksFromCollege(location, college_id)
 
 def addYaksFromCollege(location,college_id):
+    db = connect_db()
+    cur = db.cursor()
     user = User(location, "21C6CA60E3AA43C4B8C18B943394E111")
     yaks = user.get_yaks()
     for yak in yaks:
@@ -63,7 +65,7 @@ def addYaksFromCollege(location,college_id):
                 cur.execute("INSERT INTO raw_yaks (college_id, yak_text, upvotes) VALUES (?,?,?)",(college_id,yak.message,yak.score))
             except:
                 print("uh oh", yak)
-            con.commit()
+            db.commit()
 
 @app.before_request
 def before_request():
@@ -78,6 +80,13 @@ def teardown_request(exception):
 @app.route('/')
 def home():
     populateRawYaks(connect_db())
+    db = connect_db()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM raw_yaks")
+    yaks = cur.fetchall()
+    for yak in yaks:
+        print(yak)
+
     return render_template('home.html')
 
 if __name__ == '__main__':
