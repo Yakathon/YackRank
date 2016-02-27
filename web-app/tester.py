@@ -10,7 +10,7 @@ from yaklient import *
 
 
 def databasemaker(location,college_id ):
-    con = sqlite3.connect('flaskr.db')
+    con = sqlite3.connect('/tmp/yaks.db')
     cur = con.cursor()
     user = User(location, "21C6CA60E3AA43C4B8C18B943394E111")
 
@@ -29,6 +29,7 @@ def databasemaker(location,college_id ):
 
     #file.write(str(yak))
     #file.write("\n")
+
 con = sqlite3.connect('flaskr.db')
 cur = con.cursor()
 cur.executescript("""

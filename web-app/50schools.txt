@@ -1,3 +1,4 @@
+"Brown University",30.103326,-95.633677
 "Princeton University",40.349287,-74.658233
 "Harvard University",42.380098,-71.116629
 "Yale University",14.62731,121.053896
@@ -11,7 +12,6 @@
 "Johns Hopkins University",39.241773,-76.936365
 "Dartmouth College",41.92479,-91.651446
 "Northwestern University",15.944704,120.581511
-"Brown University",30.103326,-95.633677
 "Cornell University",30.612927,-96.309532
 "Vanderbilt University",40.769454,-73.719943
 "Washington University in St. Louis",38.684649,-90.330885
