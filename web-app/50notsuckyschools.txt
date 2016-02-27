@@ -20,8 +20,7 @@
 "University of Michigan—Ann Arbor",42.2828,-83.7347
 "Boston College",42.3351,-71.1704
 "University of North Carolina—Chapel Hill",35.9083,-79.0500
-"University of Rochester",43.1283,-77.6283
-"Brandeis University",42.3657,-71.2597 
+"Brandeis University",42.3657,-71.2597
 "College of William and Mary",37.2711,-76.7075
 "Case Western Reserve University",41.5042,-81.6084
 "UC Santa Barbara",34.4125,-119.8481

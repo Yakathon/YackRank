@@ -6,9 +6,6 @@ from yaklient import *
 #location = Location(50.7365, -3.5344)
 #user = User(exeter, "21C6CA60E3AA43C4B8C18B943394E111")
 
-
-
-
 def databasemaker(location,college_id ):
     con = sqlite3.connect('yaks.db')
     cur = con.cursor()
