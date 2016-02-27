@@ -1,4 +1,5 @@
 import sqlite3
+from yaklient import *
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
@@ -38,6 +39,32 @@ def generateColleges(db):
     db.cursor().executemany('INSERT INTO colleges (latitude, longitude, name) VALUES (?,?,?)', school_pos)
     db.commit()
 
+def populateRawYaks(db):
+    cur = db.cursor()
+    cur.execute('DELETE FROM raw_yaks')
+    db.commit()
+    cur.execute("SELECT * FROM colleges")
+    colleges = cur.fetchall()
+    for college in colleges:
+        college_id = college[0]
+        lattitude = college[1]
+        longitude = college[2]
+        print(college[3])
+        location = Location(lattitude,longitude)
+        print(location)
+        addYaksFromCollege(location, college_id)
+
+def addYaksFromCollege(location,college_id):
+    user = User(location, "21C6CA60E3AA43C4B8C18B943394E111")
+    yaks = user.get_yaks()
+    for yak in yaks:
+        if yak.score != None:
+            try:
+                cur.execute("INSERT INTO raw_yaks (college_id, yak_text, upvotes) VALUES (?,?,?)",(college_id,yak.message,yak.score))
+            except:
+                print("uh oh", yak)
+            con.commit()
+
 @app.before_request
 def before_request():
     g.db = connect_db()
@@ -50,7 +77,8 @@ def teardown_request(exception):
 
 @app.route('/')
 def home():
-  return render_template('home.html')
+    populateRawYaks(connect_db())
+    return render_template('home.html')
 
 if __name__ == '__main__':
     init_db()
