@@ -3,6 +3,7 @@ from yaklient import *
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
+from threading import Thread
 
 
 DATABASE = 'yaks.db'
@@ -39,7 +40,8 @@ def generateColleges(db):
     db.cursor().executemany('INSERT INTO colleges (latitude, longitude, name) VALUES (?,?,?)', school_pos)
     db.commit()
 
-def populateRawYaks(db):
+def populateRawYaks():
+    db = connect_db()
     cur = db.cursor()
     cur.execute('DELETE FROM raw_yaks')
     db.commit()
@@ -67,6 +69,25 @@ def addYaksFromCollege(location,college_id):
                 print("uh oh", yak)
             db.commit()
 
+def getTopYaks():
+    db = connect_db()
+    cur = db.cursor()
+    cur.execute("SELECT c.name, y.yak_text, y.upvotes FROM raw_yaks as y, colleges as c WHERE c.college_id = y.college_id GROUP BY y.college_id ORDER BY y.upvotes;")
+    print(cur.fetchall)
+    yaks = cur.fetchall()
+    top_yaks = {}
+    for yak in yaks:
+        print(yak)
+        print(yak[0])
+        print(yak[1])
+        top_yaks[yak[0]] = yak[1]
+    print("top_yaks dict ", top_yaks)
+    return top_yaks
+
+def publishTopYaks():
+    populateRawYaks()
+    render_template('home.html', top_yaks=getTopYaks())
+
 @app.before_request
 def before_request():
     g.db = connect_db()
@@ -79,15 +100,10 @@ def teardown_request(exception):
 
 @app.route('/')
 def home():
-    populateRawYaks(connect_db())
-    db = connect_db()
-    cur = db.cursor()
-    cur.execute("SELECT * FROM raw_yaks")
-    yaks = cur.fetchall()
-    for yak in yaks:
-        print(yak)
-
-    return render_template('home.html')
+    populateRawYaks()
+    top_yaks = getTopYaks()
+    print("##########", top_yaks == None, "##########")
+    return render_template('home.html', top_yaks=top_yaks)
 
 if __name__ == '__main__':
     init_db()

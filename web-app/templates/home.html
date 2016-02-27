@@ -3,5 +3,12 @@
   <div class="jumbo">
     <h2>Welcome to the Flask app<h2>
     <h3>This is the home page for the Flask app<h3>
+    <ul>
+    {% for id in top_yaks.keys() %}
+    <li><h2>College {{id}}</h2>{{ top_yaks[id]|safe }}
+  	{% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  	{% endfor %}
+	</ul>
   </div>
 {% endblock %}
