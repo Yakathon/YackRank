@@ -1,8 +1,7 @@
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
-     abort, render_template, flash
+    abort, render_template, flash
 from contextlib import closing
-
 
 DATABASE = '/tmp/flaskr.db'
 DEBUG = True
@@ -10,12 +9,13 @@ SECRET_KEY = 'gobears'
 USERNAME = 'berkeley'
 PASSWORD = 'boardreview'
 
-
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
+
 
 def init_db():
     with closing(connect_db()) as db:
@@ -23,9 +23,11 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
+
 @app.before_request
 def before_request():
     g.db = connect_db()
+
 
 @app.teardown_request
 def teardown_request(exception):
@@ -33,9 +35,11 @@ def teardown_request(exception):
     if db is not None:
         db.close()
 
+
 @app.route('/')
 def home():
-  return render_template('home.html')
+    return render_template('home.html')
+
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug=True)
