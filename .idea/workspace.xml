@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="939a0d83-b370-4824-8b8c-8a9f9248994c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/readability-master/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/readability-master/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/readability-master/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/readability-master/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/readability-master/.idea/readability-master.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/readability-master/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/readability-master/readability.py.bak" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/readability-master/text.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readability-master/readability.py" afterPath="$PROJECT_DIR$/readability-master/readability.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readability-master/syllables_en.py" afterPath="$PROJECT_DIR$/readability-master/syllables_en.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readability-master/utils.py" afterPath="$PROJECT_DIR$/readability-master/utils.py" />
-    </list>
+    <list default="true" id="939a0d83-b370-4824-8b8c-8a9f9248994c" name="Default" comment="" />
     <ignored path="YackRank.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
