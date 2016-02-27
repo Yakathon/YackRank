@@ -15,9 +15,12 @@ def databasemaker(location,college_id ):
     user = User(location, "21C6CA60E3AA43C4B8C18B943394E111")
     yaks = user.get_yaks()
     for yak in yaks:
-        #cur.execute("INSERT INTO raw_yaks VALUES (?,?,?);",(college_id,yak.message,yak.score))
-        #con.commit()
-        print(yak)
+        if yak.score != None:
+            try:
+                cur.execute("INSERT INTO raw_yaks (college_id, yak_text, upvotes) VALUES (?,?,?)",(college_id,yak.message,yak.score))
+            except:
+                print("uh oh", yak)
+            con.commit()
 
     con.close() # closes connection to database
 

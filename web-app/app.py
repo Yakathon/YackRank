@@ -24,6 +24,19 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
+def insert(array, words):
+    print(words)
+    array.append((float(words[1]), float(words[2]), words[0]))
+
+def generateColleges(db):
+    db.cursor().execute('DELETE FROM colleges')
+    school_pos = []
+    with open('50notsuckyschools.txt') as f:
+        for line in f:
+            words = [i.strip() for i in line.split(',')]
+            insert(school_pos, words)
+    db.cursor().executemany('INSERT INTO colleges (latitude, longitude, name) VALUES (?,?,?)', school_pos)
+    db.commit()
 
 @app.before_request
 def before_request():
@@ -37,9 +50,11 @@ def teardown_request(exception):
 
 @app.route('/')
 def home():
-  init_db()
-  connect_db().text_factory = str
   return render_template('home.html')
 
 if __name__ == '__main__':
+    init_db()
+    db = connect_db()
+    db.text_factory = str
+    generateColleges(db)
     app.run(debug = True)

@@ -7,7 +7,7 @@ def insert(array, words):
 	print(words)
 	array.append((float(words[1]), float(words[2]), words[0]))
 
-def setAll():
+def generateColleges():
 	c.execute('DELETE FROM colleges')
 	school_pos = []
 	with open('50notsuckyschools.txt') as f:
@@ -18,4 +18,4 @@ def setAll():
 	conn.commit()
 	conn.close()
 
-setAll();
+generateColleges();
