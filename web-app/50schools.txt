@@ -1,50 +1,50 @@
-"Brown University",30.103326,-95.633677
 "Princeton University",40.349287,-74.658233
 "Harvard University",42.380098,-71.116629
-"Yale University",14.62731,121.053896
-"Columbia University",33.652044,-117.828655
-"Stanford University",33.65183,-117.838942
-"University of Chicago",28.028258,-82.392427
+"Yale University",41.3111,-72.9267
+"Columbia University",40.8075,-73.9619
+"Stanford University",37.4300,-122.1700
+"University of Chicago",41.7897,-87.5997
 "Massachusetts Institute of Technology",42.3591,-71.0934
-"Duke University",41.919769,-91.649501
-"University of Pennsylvania",33.42381,-111.886915
-"California Institute of Technology",38.339344,-122.699864
+"Duke University",36.0011,-78.9389
+"University of Pennsylvania",39.9500,-75.1900
+"California Institute of Technology",34.1386,-118.1255
 "Johns Hopkins University",39.241773,-76.936365
-"Dartmouth College",41.92479,-91.651446
-"Northwestern University",15.944704,120.581511
-"Cornell University",30.612927,-96.309532
-"Vanderbilt University",40.769454,-73.719943
-"Washington University in St. Louis",38.684649,-90.330885
-"Rice University",53.801138,-9.512791
-"University of Notre Dame",40.75447,-73.975985
-"UC Berkeley",37.876498,-122.280434 
-"Emory University",29.263736,-81.03184
-"Georgetown University",33.652618,-117.828153
+"Dartmouth College",43.7033,-72.2883
+"Northwestern University",42.0531,-87.6742
+"Brown University",41.8262,-71.4032
+"Cornell University",42.2665,-76.2822
+"Vanderbilt University",36.1486,-86.8050
+"Washington University in St. Louis",38.6480,-90.3050
+"Rice University",29.7169,-95.4028
+"University of Notre Dame",41.7030,-86.2390
+"UC Berkeley",37.8700,-122.2590 
+"Emory University",33.7911,-84.3233
+"Georgetown University",38.9072,-77.0728
 "Carnegie Mellon University",40.400921,-80.103623
-"University of California—Los Angeles",34.052234,-118.243685
-"University of Southern California",38.199911,-85.765912
-"University of Virginia",14.669908,121.039841
-"Tufts University",42.403685,-71.120482
-"Wake Forest University",64.836612,-147.863429
-"University of Michigan—Ann Arbor",42.280826,-83.743038
-"Boston College",52.973191,-0.015153
-"University of North Carolina—Chapel Hill",35.9132,-79.055845
-"New York University",31.777508,-106.496973
-"University of Rochester",42.938004,-77.378379
-"Brandeis University",32.093349,34.787169
-"College of William and Mary",37.27018,-76.710032
-"Georgia Institute of Technology",33.778463,-84.398881
-"Case Western Reserve University",34.07401,-117.298726
-"UC Santa Barbara",33.685802,-117.808283
-"UC Irvine",-33.210657,138.605544
-"UC San Diego",-33.772799,150.750884
-"Boston University",42.351848,-71.11073
-"Rensselaer Polytechnic Institute",42.722168,-73.679539
-"Tulane University",38.662892,-90.330251
-"UC Davis",-27.565664,151.929023 
-"University of Illinois—Urbana-Champaign", 40.109309,-88.228389
-"University of Wisconsin—Madison",43.041283,-89.430147
-"Lehigh University",64.839152,-147.858826
-"Northeastern University",42.340075,-71.089537
-"Pennsylvania State University - University Park",40.814796,-77.865313
-"University of Florida",28.07354,-82.437359
+"UC Los Angeles",34.0722,-118.4441 
+"University of Southern California",34.0205, -118.2856 
+"University of Virginia",38.0350,-78.5050
+"Tufts University",42.4069,-71.1198
+"Wake Forest University",36.1350,-80.2770
+"University of Michigan—Ann Arbor",42.2828,-83.7347
+"Boston College",42.3351,-71.1704
+"University of North Carolina—Chapel Hill",35.9083,-79.0500
+"New York University",40.7300,-73.9950
+"University of Rochester",43.1283,-77.6283
+"Brandeis University",42.3657,-71.2597 
+"College of William and Mary",37.2711,-76.7075
+"Georgia Institute of Technology",33.7758,-84.3947
+"Case Western Reserve University",41.5042,-81.6084
+"UC Santa Barbara",34.4125,-119.8481
+"UC Irvine",33.6454,-117.8426° 
+"UC San Diego",32.8810,-117.2380
+"Boston University",42.3496,-71.0997
+"Rensselaer Polytechnic Institute",42.7300,-73.6775
+"Tulane University",29.9353,-90.1227
+"UC Davis",38.3402,-121.5312
+"University of Illinois—Urbana-Champaign",40.0618,-88.1343
+"University of Wisconsin—Madison",43.0667,-89.4000
+"Lehigh University",40.6072,-75.3790
+"Northeastern University",42.3389,-71.0903
+"Pennsylvania State University - University Park",40.7961,-77.8628
+"University of Florida",29.650278, -82.343889
