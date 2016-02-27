@@ -13,18 +13,16 @@ def databasemaker(location,college_id ):
     con = sqlite3.connect('yaks.db')
     cur = con.cursor()
     user = User(location, "21C6CA60E3AA43C4B8C18B943394E111")
-   
-    for yak in user.get_yaks():
-        #cur.execute("INSERT INTO raw_yaks VALUES (?,?,?);",(college_id,yak.message,yak.score))
-        #con.commit()
-        print(yak)
+    try:
+        yaks = user.get_yaks()
+        for yak in yaks:
+            #cur.execute("INSERT INTO raw_yaks VALUES (?,?,?);",(college_id,yak.message,yak.score))
+            #con.commit()
+            print(yak)
+    except:
+        print(college[3] + " sucks")
+
     con.close() # closes connection to database
-
-
-    # Get yaks, iterate through them, and print them
-
-    #file.write(str(yak))
-    #file.write("\n")
 
 con = sqlite3.connect('yaks.db')
 cur = con.cursor()
@@ -38,6 +36,7 @@ for college in  colleges:
     longitude = college[2]
     print(college[3])
     location = Location(lattitude,longitude)
+    print(location)
     databasemaker(location, college_id)
 
 
