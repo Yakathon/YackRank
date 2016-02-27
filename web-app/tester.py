@@ -13,14 +13,11 @@ def databasemaker(location,college_id ):
     con = sqlite3.connect('yaks.db')
     cur = con.cursor()
     user = User(location, "21C6CA60E3AA43C4B8C18B943394E111")
-    try:
-        yaks = user.get_yaks()
-        for yak in yaks:
-            #cur.execute("INSERT INTO raw_yaks VALUES (?,?,?);",(college_id,yak.message,yak.score))
-            #con.commit()
-            print(yak)
-    except:
-        print(college[3] + " sucks")
+    yaks = user.get_yaks()
+    for yak in yaks:
+        #cur.execute("INSERT INTO raw_yaks VALUES (?,?,?);",(college_id,yak.message,yak.score))
+        #con.commit()
+        print(yak)
 
     con.close() # closes connection to database
 

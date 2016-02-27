@@ -10,7 +10,7 @@ def insert(array, words):
 def setAll():
 	c.execute('DELETE FROM colleges')
 	school_pos = []
-	with open('50schools.txt') as f:
+	with open('50notsuckyschools.txt') as f:
 		for line in f:
 			words = [i.strip() for i in line.split(',')]
 			insert(school_pos, words)
