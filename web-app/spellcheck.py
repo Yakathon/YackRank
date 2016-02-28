@@ -23,11 +23,13 @@ def common_dicts():
 def common_words_algorithm():
     cdict = common_dicts()
     word_dict = {}
+    len_dict = {}
     for college in cdict.keys():
         all_words = ' '.join(cdict[college])
-        number = spellcheck(all_words)
+        number, yaks = spellcheck(all_words)
         word_dict[college] = number
-    return word_dict
+        len_dict[college] = yaks
+    return word_dict,len_dict
     
 def spellcheck(all_words):
 	s = set(nltk.corpus.stopwords.words('english'))
@@ -40,8 +42,22 @@ def spellcheck(all_words):
 	    	
 	    	count = 1 + count
 
-	return count/len(tokens)
+	return count/len(tokens), len(tokens)
 
+def populateValuableWordsDB():
+    con = sqlite3.connect('yaks.db')
+    cur = con.cursor()
+    con.text_factory = str
+    cur.execute('DELETE FROM most_valuable_words')
+
+    word_dict, num_dict = common_words_algorithm()
+    for i in num_dict.items():
+        print(i)
+        cur.execute('INSERT INTO num_yaks (college_id, yaks) VALUES (?,?)', i)
+    con.commit()
+    con.close()
+
+populateValuableWordsDB()
 print(common_words_algorithm())
 
 
