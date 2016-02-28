@@ -8,6 +8,7 @@ from threading import Thread
 from word_operations import populateValuableWordsDB
 from word_operations import populateTopYaksDB
 from word_operations import populateReadabilityTables
+from spellcheck import populateNumYaksDB
 from json_converter import getJson
 import os
 
@@ -93,6 +94,7 @@ def updateYaks():
     populateValuableWordsDB()
     populateTopYaksDB()
     populateReadabilityTables()
+    populateNumYaksDB()
 
 
 @app.before_request
@@ -106,6 +108,7 @@ def teardown_request(exception):
         db.close()
 
 @app.route('/')
+@app.route('/main.html')
 def home():
     db = connect_db()
     cur = db.cursor()
@@ -140,6 +143,9 @@ def home():
     print("printed yaks")
     return render_template('main.html')
 
+@app.route('/about.html')
+def about():
+    return render_template('about.html')
 #@app.route('/index')
 
 #@app.route('<filename>')
@@ -158,7 +164,7 @@ def getStuff():
 def serve_static(filename):
     print(filename)
     root_dir = os.path.dirname(os.getcwd())
-    return send_from_directory(os.path.join(root_dir, 'static', ''), filename[:12])
+    return send_from_directory(os.path.join(root_dir, 'static', ''), filename)
 # @app.route('/topwords')
 # def topwords():
 

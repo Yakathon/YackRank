@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>About</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 15;
+        padding: 15c;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">YakRank</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+      </nav>
+    </div>
+  </header>
+  <style>
+    p.padding {
+    padding-left: 0.5cm;
+}
+
+</style>
+
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">YakRank</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="main.html">Map</a>
+      <a class="mdl-navigation__link" href="about.html">About Us</a>
+
+    </nav>
+  </div>
+  <script type="text/javascript">
+  function validate(){
+  var remember = document.getElementById('switch-1');
+  if (remember.checked){
+    alert("checked") ;
+  }else{
+    alert("You didn't check it! Let me check it for you.")
+  }
+}</script>
+  <body>  
+  <main class="mdl-layout__content">
+    <div class="page-content">
+	<h1>About Us</h1></div>
+    <h4>We are a group of freshman Computer Science students from the University of California, Berkeley.</h4></div>
+  </main>
+  </body>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYJ6Eo7VHm59DW2f6VAzpHh3ppNwR5S-Q&signed_in=true&callback=initMap">
+    </script>
+</div>
+</html>

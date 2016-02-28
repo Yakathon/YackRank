@@ -24,7 +24,7 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title -->
-      <span class="mdl-layout-title">YakRank</span>
+      <span class="mdl-layout-title"><img src="{{ url_for('static', filename='logo.png') }}" style="width:45px;height:45px;">YakRank</span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
@@ -35,10 +35,8 @@
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">YakRank</span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="main.html">Map</a>
+      <a class="mdl-navigation__link" href="about.html">About Us</a>
     </nav>
   </div>
   <main class="mdl-layout__content">
@@ -109,16 +107,21 @@
               path: google.maps.SymbolPath.CIRCLE,
               scale: 10
               },
-              draggable: true,
+              draggable: false,
               map: map
             });
+              var previnfo = false
             var contentString = "<h4>"+ location["name"]+ "<h4/>"+ "<h5>Most Frequent Word: "+ location["word"][0] + "</h5>";
           var infowindow = new google.maps.InfoWindow({
              content: contentString
             });
             google.maps.event.addListener(locationCircle,'click', (function(locationCircle,content,infowindow){ 
               return function() {
-              infowindow.open(map,locationCircle);
+              if(previnfo){
+              previnfo.close()}
+                previnfo = infowindow
+              previnfo.open(map,locationCircle);
+          
               };
             })(locationCircle,contentString,infowindow));
         }

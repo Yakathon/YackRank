@@ -7,7 +7,7 @@ from readability import utils
 
 
 
-def group_colleges():
+def common_dicts():
     con = sqlite3.connect('yaks.db')
     cur = con.cursor()
     con.text_factory = str
@@ -25,7 +25,7 @@ def group_colleges():
 
 
 def common_words_algorithm():
-    cdict = group_colleges()
+    cdict = common_dicts()
     word_dict = {}
     for college in cdict.keys():
         all_words = ' '.join(cdict[college])
@@ -140,7 +140,7 @@ def populateTimesSwore():
 def getReadabilities(string):
     read = Readability(string)
     return read.FleschReadingEase(), read.FleschKincaidGradeLevel()
-
+    
 
 def num_swear_algorithm():
     swear_dict = {}
@@ -160,16 +160,9 @@ def num_swears(words):
 
 
 def test_print():
-    con = sqlite3.connect('yaks.db')
-    cur = con.cursor()
-    con.text_factory = str
-    cur.execute('SELECT * FROM times_swore')
+    print("Hello")
     colleges = cur.fetchall()
-    print('hello')
     for college in colleges:
         print(college[1])
 
-
-populateTimesSwore()
-test_print()
 populateValuableWordsDB()
