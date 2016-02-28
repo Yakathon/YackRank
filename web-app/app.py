@@ -3,6 +3,8 @@ from yaklient import *
 from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash
 from flask_apscheduler import APScheduler
+
+from apscheduler.schedulers.background import BackgroundScheduler
 from contextlib import closing
 from threading import Thread
 from word_operations import populateValuableWordsDB
@@ -19,24 +21,24 @@ PASSWORD = 'boardreview'
 
 class Config(object):
     JOBS = [
-            {
+        {
             'id': 'updateYaks',
             'func': '__main__:updateYaks',
             'args': (),
             'trigger': 'interval',
-            'minutes': 1
-            }
-            ]
+            'minutes': 10
+        }
+    ]
             
     SCHEDULER_VIEWS_ENABLED = True
 
 
 app = Flask(__name__, static_folder='static')
-app.config.from_object(__name__)
+app.config.from_object(Config())
 
 
 def connect_db():
-    return sqlite3.connect(app.config['DATABASE'])
+    return sqlite3.connect("yaks.db")
 
 def init_db():
     with closing(connect_db()) as db:
@@ -147,6 +149,7 @@ def send_file(filename):
     return send_from_directory(app.static_folder, filename)
 
 if __name__ == '__main__':
+
     init_db()
     db = connect_db()
     db.text_factory = str
@@ -158,7 +161,7 @@ if __name__ == '__main__':
     print("Updating Yaks")
     updateYaks()
     print("Updated Yaks")
-
+    
     scheduler = APScheduler()
     scheduler.init_app(app)
     scheduler.start()
