@@ -51,7 +51,7 @@ def insert(array, words):
 def generateColleges(db):
     db.cursor().execute('DELETE FROM colleges')
     school_pos = []
-    with open('50notsuckyschools.txt') as f:
+    with open('lessthan50schools.txt') as f:
         for line in f:
             words = [i.strip() for i in line.split(',')]
             insert(school_pos, words)

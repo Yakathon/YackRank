@@ -24,7 +24,7 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title -->
-      <span class="mdl-layout-title"><img src="{{ url_for('static', filename='logo.png') }}" style="width:45px;height:45px;">YakRank</span>
+      <span class="mdl-layout-title"><img src="{{ url_for('static', filename='logo.png') }}" style="width:45px;height:45px;padding-right:20px">YakRank</span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
@@ -80,6 +80,7 @@
           center: {lat: 37.090, lng: -95.712},
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
+        map.setOptions({minZoom:4});
  
         // Construct the circle for each value in data.
         // Note: We scale the area of the circle based on the readability.
@@ -105,13 +106,17 @@
               clickable: true,
               icon: {
               path: google.maps.SymbolPath.CIRCLE,
-              scale: 10
+              scale: location["num_yaks"][0]*0.01,
+              fillOpacity: 0.4,
+              fillColor: '#FF0000',
+              strokeWeight: 0
               },
               draggable: false,
               map: map
             });
+
               var previnfo = false
-            var contentString = "<h4>"+ location["name"]+ "<h4/>"+ "<h5>Most Frequent Word: "+ location["word"][0] + "</h5>";
+            var contentString = "<h4>"+ location["name"]+ "<h4/>"+ "<h5>Most Frequent Word: "+ location["word"][0] + "</h5>"+ "<h5>Number of Yaks: "+ location["num_yaks"][0] + "</h5>"+ "<h5>Top Yak: "+ location["top_yaks"][0] + "</h5>"+ "<h5>Yak Readability: "+ Math.round(location["college_readability"][0]*100)/100 + "</h5>"+ "<h5>Average Grade Level of Yaks: "+ Math.round(location["college_grade_level"][0]) + "</h5>";
           var infowindow = new google.maps.InfoWindow({
              content: contentString
             });
