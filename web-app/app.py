@@ -1,15 +1,9 @@
 import sqlite3
 from yaklient import *
-from flask import Flask, request, session, g, redirect, url_for, \
-<<<<<<< HEAD
-    abort, render_template, flash
-from flask_apscheduler import APScheduler
-
-from apscheduler.schedulers.background import BackgroundScheduler
-=======
+from flask import Flask, request, session, g, redirect, url_for, 
     abort, render_template, flash, jsonify, send_from_directory
-import flask
->>>>>>> 4934391d94cca2230488f48eb60bb14262a4e252
+from flask_apscheduler import APScheduler
+from apscheduler.schedulers.background import BackgroundScheduler
 from contextlib import closing
 from threading import Thread
 from word_operations import populateValuableWordsDB
