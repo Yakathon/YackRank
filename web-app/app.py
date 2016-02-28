@@ -30,6 +30,7 @@ class Config(object):
             
     SCHEDULER_VIEWS_ENABLED = True
 
+
 app = Flask(__name__, static_folder='static')
 app.config.from_object(__name__)
 
