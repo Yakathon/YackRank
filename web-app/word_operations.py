@@ -7,7 +7,7 @@ from readability import utils
 
 
 
-def common_dicts():
+def group_colleges():
     con = sqlite3.connect('yaks.db')
     cur = con.cursor()
     con.text_factory = str
@@ -25,7 +25,7 @@ def common_dicts():
 
 
 def common_words_algorithm():
-    cdict = common_dicts()
+    cdict = group_colleges()
     word_dict = {}
     for college in cdict.keys():
         all_words = ' '.join(cdict[college])
@@ -103,7 +103,7 @@ def populateReadabilityTables():
     con.text_factory = str
     cur.execute('DELETE FROM college_readability;')
     cur.execute('DELETE FROM college_grade_level;')
-    cdict = common_dicts()
+    cdict = group_colleges()
     grades = {}
     readabilities = {}
     for college in cdict.keys():
