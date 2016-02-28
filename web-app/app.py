@@ -10,6 +10,7 @@ from word_operations import populateTopYaksDB
 from word_operations import populateReadabilityTables
 from json_converter import getJson
 import os
+
 DATABASE = 'yaks.db' # Our database
 DEBUG = True
 SECRET_KEY = 'gobears'
