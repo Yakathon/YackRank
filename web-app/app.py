@@ -2,10 +2,12 @@ import sqlite3
 from yaklient import *
 from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash
+from flask_apscheduler import APScheduler
 from contextlib import closing
 from threading import Thread
 from word_operations import populateValuableWordsDB
 from word_operations import populateTopYaksDB
+
 
 
 
@@ -15,9 +17,24 @@ SECRET_KEY = 'gobears'
 USERNAME = 'berkeley'
 PASSWORD = 'boardreview'
 
+class Config(object):
+    JOBS = [
+            {
+            'id': 'updateYaks',
+            'func': '__main__:updateYaks',
+            'args': (),
+            'trigger': 'interval',
+            'seconds': 10
+            }
+            ]
+            
+    SCHEDULER_VIEWS_ENABLED = True
+
 
 app = Flask(__name__)
-app.config.from_object(__name__)
+app.config.from_object(Config())
+
+
 
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
@@ -122,4 +139,10 @@ if __name__ == '__main__':
     print("Updating Yaks")
     updateYaks()
     print("Updated Yaks")
+
+    scheduler = APScheduler()
+    scheduler.init_app(app)
+    scheduler.start()
     app.run(debug=True)
+
+
