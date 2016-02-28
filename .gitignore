@@ -6,3 +6,5 @@ web-app/yaks.db
 web-app/yaks.db
 
 web-app/yaks.db
+
+*.pyc
