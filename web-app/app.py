@@ -1,7 +1,6 @@
 import sqlite3
 from yaklient import *
-from flask import Flask, request, session, g, redirect, url_for, 
-    abort, render_template, flash, jsonify, send_from_directory
+from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify, send_from_directory
 from flask_apscheduler import APScheduler
 from apscheduler.schedulers.background import BackgroundScheduler
 from contextlib import closing
