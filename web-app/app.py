@@ -75,7 +75,7 @@ def populateRawYaks():
 
 def updateYaks():
     populateRawYaks()
-    #populateValuableWordsDB()
+    populateValuableWordsDB()
     populateTopYaksDB()
 
 

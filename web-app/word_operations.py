@@ -33,8 +33,10 @@ def common_words_algorithm():
 
 def populateValuableWordsDB():
     word_dict = common_words_algorithm()
-    print(word_dict.items())
-    cur.executemany('INSERT INTO most_valuable_words (college_id, word_text) VALUES (?,?)', word_dict.items())
+    for i in word_dict.items():
+        cur.execute('INSERT INTO most_valuable_words (college_id, word_text) VALUES (?,?)', i)
+    con.commit()
+    con.close()
 
 
 def common_word(all_words):
@@ -64,14 +66,12 @@ def most_common_word_in_list(L):
 def populateTopYaksDB():
     print("populating")
     topyaks = getTopYaks()
-    cur.executemany('INSERT INTO top_yaks (college_id, word_text) VALUES (?,?)', word_dict.items())
-    db.commit()
+    cur.executemany('INSERT INTO top_yaks (college_id, yak_text) VALUES (?,?)', topyaks.items())
+    con.commit()
 
 #TODO: NEEDS TO CREATE ADD TO DATABASE
 def getTopYaks():
     print("getting top yaks")
-    db = connect_db()
-    cur = db.cursor()
     cur.execute("SELECT c.college_id, c.name, y.yak_text, y.upvotes FROM raw_yaks as y, colleges as c WHERE c.college_id = y.college_id GROUP BY y.college_id ORDER BY y.upvotes;")
     yaks = cur.fetchall()
     top_yaks = {}
