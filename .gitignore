@@ -16,3 +16,5 @@ web-app/yaks.db
 .idea/workspace.xml
 
 .idea/misc.xml
+
+web-app/static/data.json

@@ -37,7 +37,15 @@ create table college_grade_level (
 college_id integer primary key not null,
 average_grade_level DOUBLE
 );
+
 drop table if exists num_yaks;
 create table num_yaks(
 college_id integer primary key not null,
-yaks integer);
+yaks integer not null);
+
+
+drop table if exists times_swore;
+create table times_swore (
+college_id integer primary key not null,
+times_swore DOUBLE not null
+);

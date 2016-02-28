@@ -30,7 +30,6 @@ class Config(object):
             
     SCHEDULER_VIEWS_ENABLED = True
 
-
 app = Flask(__name__, static_folder='static')
 app.config.from_object(__name__)
 
@@ -51,7 +50,7 @@ def insert(array, words):
 def generateColleges(db):
     db.cursor().execute('DELETE FROM colleges')
     school_pos = []
-    with open('lessthan50schools.txt') as f:
+    with open('50notsuckyschools.txt') as f:
         for line in f:
             words = [i.strip() for i in line.split(',')]
             insert(school_pos, words)
@@ -64,6 +63,7 @@ def addYaksFromCollege(location,college_id):
     cur = db.cursor()
     user = User(location, "21C6CA60E3AA43C4B8C18B943394E111")
     yaks = user.get_yaks()
+    #print(yaks)
     for yak in yaks:
         if yak.score != None:
             try:
@@ -156,8 +156,9 @@ def getStuff():
 
 @app.route('/<path:filename>')
 def serve_static(filename):
+    print(filename)
     root_dir = os.path.dirname(os.getcwd())
-    return send_from_directory(os.path.join(root_dir, 'static', ''), filename)
+    return send_from_directory(os.path.join(root_dir, 'static', ''), filename[:12])
 # @app.route('/topwords')
 # def topwords():
 
@@ -179,6 +180,7 @@ if __name__ == '__main__':
     print("Updating Yaks")
     updateYaks()
     print("Updated Yaks")
+    getJson()
     
     scheduler = APScheduler()
     scheduler.init_app(app)

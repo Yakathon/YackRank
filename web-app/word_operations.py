@@ -41,7 +41,6 @@ def populateValuableWordsDB():
 
     word_dict = common_words_algorithm()
     for i in word_dict.items():
-        print(i)
         cur.execute('INSERT INTO most_valuable_words (college_id, word_text) VALUES (?,?)', i)
     con.commit()
     con.close()
