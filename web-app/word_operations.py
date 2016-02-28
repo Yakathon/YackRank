@@ -30,8 +30,8 @@ def common_words_algorithm():
         word_dict[college] = cword
     return word_dict
 
-
 def populateValuableWordsDB():
+    cur.execute('DELETE FROM most_valuable_words')
     word_dict = common_words_algorithm()
     for i in word_dict.items():
         cur.execute('INSERT INTO most_valuable_words (college_id, word_text) VALUES (?,?)', i)
