@@ -31,15 +31,8 @@ class Config(object):
     SCHEDULER_VIEWS_ENABLED = True
 
 
-<<<<<<< HEAD
-app = Flask(__name__)
-app.config.from_object(Config())
-
-
-=======
 app = Flask(__name__, static_folder='static')
 app.config.from_object(__name__)
->>>>>>> ab068a183b682630ef9e27c736a121eec06b02de
 
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
