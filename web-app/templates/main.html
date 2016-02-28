@@ -106,9 +106,9 @@
               clickable: true,
               icon: {
               path: google.maps.SymbolPath.CIRCLE,
-              scale: location["num_yaks"][0]*0.01,
-              fillOpacity: 0.4,
-              fillColor: '#FF0000',
+              scale: location["num_yaks"][0]*location["num_yaks"][0]*0.000007,
+              fillOpacity: 0.6,
+              fillColor: randomColor(),
               strokeWeight: 0
               },
               draggable: false,
@@ -116,7 +116,7 @@
             });
 
               var previnfo = false
-            var contentString = "<h4>"+ location["name"]+ "<h4/>"+ "<h5>Most Frequent Word: "+ location["word"][0] + "</h5>"+ "<h5>Number of Yaks: "+ location["num_yaks"][0] + "</h5>"+ "<h5>Top Yak: "+ location["top_yaks"][0] + "</h5>"+ "<h5>Yak Readability: "+ Math.round(location["college_readability"][0]*100)/100 + "</h5>"+ "<h5>Average Grade Level of Yaks: "+ Math.round(location["college_grade_level"][0]) + "</h5>";
+            var contentString = "<h4>"+ location["name"]+ "<h4/>"+ "<h5>Most Frequent Word: "+ location["word"][0] + "</h5>"+ "<h5>Number of Yaks: "+ location["num_yaks"][0] + "</h5>"+ "<h5>Top Yak: "+ location["top_yaks"][0] + "</h5>"+ "<h5>Yak Readability: "+ Math.round(location["college_readability"][0]*100)/100 + "</h5>"+ "<h5>Average Grade Level of Yaks: "+ Math.round(location["college_grade_level"][0]*100)/100 + "</h5>";
           var infowindow = new google.maps.InfoWindow({
              content: contentString
             });
@@ -200,6 +200,7 @@
 		
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='randomColor.js') }}"></script>
     <!--<script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
