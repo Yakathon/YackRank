@@ -40,8 +40,6 @@ def all_words(d):
     return word_dict
 
 
-
-
 print(job())
 
 

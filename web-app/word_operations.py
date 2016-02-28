@@ -7,7 +7,7 @@ from readability import utils
 
 
 
-def common_dicts():
+def group_colleges():
     con = sqlite3.connect('yaks.db')
     cur = con.cursor()
     con.text_factory = str
@@ -25,7 +25,7 @@ def common_dicts():
 
 
 def common_words_algorithm():
-    cdict = common_dicts()
+    cdict = group_colleges()
     word_dict = {}
     for college in cdict.keys():
         all_words = ' '.join(cdict[college])
@@ -123,16 +123,53 @@ def populateReadabilityTables():
     con.commit()
     con.close()
 
+
+def populateTimesSwore():
+    con = sqlite3.connect('yaks.db')
+    cur = con.cursor()
+    con.text_factory = str
+    cur.execute('DELETE FROM times_swore')
+
+    num_sworn = num_swear_algorithm()
+    for i in num_sworn.items():
+        cur.execute('INSERT INTO times_swore (college_id, times_swore) VALUES (?,?)', i)
+    con.commit()
+    con.close()
+
+
 def getReadabilities(string):
     read = Readability(string)
     return read.FleschReadingEase(), read.FleschKincaidGradeLevel()
-    
+
+
+def num_swear_algorithm():
+    swear_dict = {}
+    sdict = group_colleges()
+    for college in sdict.keys():
+        all_words = ' '.join(sdict[college])
+        swears = num_swears(all_words)
+        swear_dict[college] = swears
+    return swear_dict
+
+
+def num_swears(words):
+    s = {'fuck', 'bitch', 'asshole', 'ass', 'damn', 'hell', 'cunt', 'twat', 'fucker', 'fucking',
+         'nigga', 'nigger', 'shit', 'shitty', 'pussy', 'blowjob', 'bj', 'dick', 'mofo', 'motherfucker'}
+    swears = len(list(filter(lambda elem: elem in s, nltk.word_tokenize(words))))
+    return swears
 
 
 def test_print():
-    print("Hello")
+    con = sqlite3.connect('yaks.db')
+    cur = con.cursor()
+    con.text_factory = str
+    cur.execute('SELECT * FROM times_swore')
     colleges = cur.fetchall()
+    print('hello')
     for college in colleges:
         print(college[1])
 
+
+populateTimesSwore()
+test_print()
 populateValuableWordsDB()
