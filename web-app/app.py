@@ -16,7 +16,7 @@ USERNAME = 'berkeley'
 PASSWORD = 'boardreview'
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 app.config.from_object(__name__)
 
 def connect_db():
@@ -101,6 +101,10 @@ def home():
         print(yak)
     print("printed yaks")
     return render_template('home.html')
+
+@app.route('/<path:filename>')
+def send_file(filename):  
+    return send_from_directory(app.static_folder, filename)
 
 # @app.route('/topwords')
 # def topwords():

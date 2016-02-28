@@ -13,7 +13,7 @@ def getJson():
 		text = c.fetchall()
 		data.append({"name":row[3], "latitude":row[1], "longitude":row[2], "word":text[0]})
 		counter += 1
-	with open('data.txt', 'w') as outfile:
+	with open('static/data.json', 'w') as outfile:
 		json.dump(data, outfile)
 	print(data)
 

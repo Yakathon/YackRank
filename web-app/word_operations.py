@@ -31,7 +31,7 @@ def common_words_algorithm():
     return word_dict
 
 def populateValuableWordsDB():
-    #cur.execute('DELETE FROM most_valuable_words')
+    cur.execute('DELETE FROM most_valuable_words')
     word_dict = common_words_algorithm()
     for i in word_dict.items():
         print(i)
