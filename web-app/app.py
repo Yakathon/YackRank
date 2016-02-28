@@ -8,7 +8,7 @@ from threading import Thread
 from word_operations import populateValuableWordsDB
 from word_operations import populateTopYaksDB
 from word_operations import populateReadabilityTables
-from json_converter import getJson
+#from json_converter import getJson
 import os
 
 DATABASE = 'yaks.db' # Our database
@@ -51,7 +51,7 @@ def insert(array, words):
 def generateColleges(db):
     db.cursor().execute('DELETE FROM colleges')
     school_pos = []
-    with open('lessthan50schools.txt') as f:
+    with open('50notsuckyschools.txt') as f:
         for line in f:
             words = [i.strip() for i in line.split(',')]
             insert(school_pos, words)
