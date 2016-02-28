@@ -1,13 +1,15 @@
 import sqlite3
 from yaklient import *
 from flask import Flask, request, session, g, redirect, url_for, \
-    abort, render_template, flash
-from flask_apscheduler import APScheduler
+    abort, render_template, flash, jsonify, send_from_directory
+import flask
 from contextlib import closing
 from threading import Thread
 from word_operations import populateValuableWordsDB
 from word_operations import populateTopYaksDB
 from word_operations import populateReadabilityTables
+from json_converter import getJson
+import os
 
 
 
@@ -30,6 +32,8 @@ class Config(object):
             
     SCHEDULER_VIEWS_ENABLED = True
 
+app = Flask(__name__, static_folder='static')
+app.config.from_object(__name__)
 
 app = Flask(__name__, static_folder='static')
 app.config.from_object(__name__)
@@ -107,7 +111,6 @@ def teardown_request(exception):
         db.close()
 
 @app.route('/')
-@app.route('/index')
 def home():
     db = connect_db()
     cur = db.cursor()
@@ -145,6 +148,34 @@ def home():
 @app.route('/<path:filename>')
 def send_file(filename):  
     return send_from_directory(app.static_folder, filename)
+    return render_template('main.html')
+
+#@app.route('/index')
+
+#@app.route('<filename>')
+#def send_file(filename):  
+    #print(filename)
+    #return send_from_directory(app.static_folder, filename)
+@app.route('/json', methods=['GET'])
+def getStuff():
+    print("help plz")
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url = os.path.join(SITE_ROOT, "static", "data.json")
+    data = json.load(open(json_url))
+    print(data)
+    return data
+
+@app.route('/js/<path:filename>')
+def serve_static(filename):
+    root_dir = os.path.dirname(os.getcwd())
+    return send_from_directory(os.path.join(root_dir, 'static', ''), filename)
+# @app.route('/topwords')
+# def topwords():
+
+
+# @app.route('/top_yaks')
+# def topwords():
+
 
 if __name__ == '__main__':
     init_db()
