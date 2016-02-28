@@ -4,8 +4,8 @@ from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash
 from contextlib import closing
 from threading import Thread
-from operations import populateValuableWordsDB
-from operations import populateTopYaksDB
+from word_operations import populateValuableWordsDB
+from word_operations import populateTopYaksDB
 
 
 
@@ -76,7 +76,7 @@ def populateRawYaks():
 def updateYaks():
     populateRawYaks()
     #populateValuableWordsDB()
-    #populateTopYaksDB()
+    populateTopYaksDB()
 
 
 @app.before_request

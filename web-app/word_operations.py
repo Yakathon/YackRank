@@ -15,9 +15,9 @@ def common_dicts():
     for row in rows:
         cid = row[1]
         if cid not in cdict.keys():
-            cdict[cid] = [row[2]]
+            cdict[cid] = [row[2].lower()]
         else:
-            cdict[cid].append(row[2])
+            cdict[cid].append(row[2].lower())
     return cdict
 
 
@@ -38,7 +38,8 @@ def populateValuableWordsDB():
 
 
 def common_word(all_words):
-    tokens = filter(lambda elem: len(elem) > 3, nltk.word_tokenize(all_words))
+    s = set(nltk.corpus.stopwords.words('english'))
+    tokens = filter(lambda elem: len(elem) > 3 and elem not in s, nltk.word_tokenize(all_words))
     return most_common_word_in_list(tokens)
 
 
@@ -61,16 +62,17 @@ def most_common_word_in_list(L):
     return max(groups, key=_auxfun)[0]
 
 def populateTopYaksDB():
+    print("populating")
     topyaks = getTopYaks()
     cur.executemany('INSERT INTO top_yaks (college_id, word_text) VALUES (?,?)', word_dict.items())
     db.commit()
 
 #TODO: NEEDS TO CREATE ADD TO DATABASE
 def getTopYaks():
+    print("getting top yaks")
     db = connect_db()
     cur = db.cursor()
     cur.execute("SELECT c.college_id, c.name, y.yak_text, y.upvotes FROM raw_yaks as y, colleges as c WHERE c.college_id = y.college_id GROUP BY y.college_id ORDER BY y.upvotes;")
-    print(cur)
     yaks = cur.fetchall()
     top_yaks = {}
     for yak in yaks:
