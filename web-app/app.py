@@ -106,6 +106,7 @@ def teardown_request(exception):
         db.close()
 
 @app.route('/')
+@app.route('/main.html')
 def home():
     db = connect_db()
     cur = db.cursor()
