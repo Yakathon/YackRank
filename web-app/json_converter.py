@@ -16,5 +16,6 @@ def getJson():
 	with open('static/data.json', 'w') as outfile:
 		json.dump(data, outfile)
 	print(data)
+	#return data
 
-getJson()
+#getJson()
