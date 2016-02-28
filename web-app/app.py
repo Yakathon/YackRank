@@ -7,7 +7,7 @@ from contextlib import closing
 from threading import Thread
 from word_operations import populateValuableWordsDB
 from word_operations import populateTopYaksDB
-
+from word_operations import populateReadabilityTables
 
 
 
@@ -24,7 +24,7 @@ class Config(object):
             'func': '__main__:updateYaks',
             'args': (),
             'trigger': 'interval',
-            'seconds': 10
+            'minutes': 10
             }
             ]
             
@@ -33,6 +33,7 @@ class Config(object):
 
 app = Flask(__name__, static_folder='static')
 app.config.from_object(__name__)
+
 
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
@@ -92,6 +93,7 @@ def updateYaks():
     populateRawYaks()
     populateValuableWordsDB()
     populateTopYaksDB()
+    populateReadabilityTables()
 
 
 @app.before_request
@@ -109,9 +111,32 @@ def teardown_request(exception):
 def home():
     db = connect_db()
     cur = db.cursor()
+    
     cur.execute("SELECT * FROM top_yaks")
     yaks = cur.fetchall()
-    print("printing yaks")
+    print("printing yaks 1")
+    for yak in yaks:
+        print(yak)
+    print("printed yaks")
+
+    cur.execute("SELECT * FROM most_valuable_words")
+    yaks = cur.fetchall()
+    print("printing yaks 2")
+    for yak in yaks:
+        print(yak)
+    print("printed yaks")
+    return render_template('home.html')
+
+    cur.execute("SELECT * FROM college_readability")
+    yaks = cur.fetchall()
+    print("printing yaks 3")
+    for yak in yaks:
+        print(yak)
+    print("printed yaks")
+
+    cur.execute("SELECT * FROM college_grade_level")
+    yaks = cur.fetchall()
+    print("printing yaks 4")
     for yak in yaks:
         print(yak)
     print("printed yaks")
@@ -142,9 +167,9 @@ if __name__ == '__main__':
     updateYaks()
     print("Updated Yaks")
 
-    scheduler = APScheduler()
-    scheduler.init_app(app)
-    scheduler.start()
-    app.run(debug=True)
+    # scheduler = APScheduler()
+    # scheduler.init_app(app)
+    # scheduler.start()
+    app.run(debug=False)
 
 
