@@ -33,8 +33,10 @@ def common_words_algorithm():
 
 def populate_db():
     word_dict = common_words_algorithm()
-    print(word_dict.items())
-    cur.executemany('INSERT INTO most_valuable_words (college_id, word_text) VALUES (?,?)', word_dict.items())
+    for i in word_dict.items():
+        cur.execute('INSERT INTO most_valuable_words (college_id, word_text) VALUES (?,?)', i)
+    con.commit()
+    con.close()
 
 
 def common_word(all_words):
@@ -69,4 +71,4 @@ def test_print():
         print(college[1])
 
 populate_db()
-test_print()
+#test_print()
