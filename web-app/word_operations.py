@@ -2,11 +2,12 @@ import sqlite3
 import nltk
 import itertools
 import operator
+from readability.readability import Readability
+from readability import utils
 
 con = sqlite3.connect('yaks.db')
 cur = con.cursor()
 con.text_factory = str
-
 
 def common_dicts():
     cdict = {}
@@ -82,14 +83,35 @@ def getTopYaks():
     return top_yaks
 
 
+def populateReadabilityTables():
+    cur.execute('DELETE FROM college_readability')
+    cur.execute('DELETE FROM college_grade_level')
+    cdict = common_dicts()
+    grades = {}
+    readabilities = {}
+    for college in cdict.keys():
+        readabilities_arr = []
+        grades_arr = []
+        for yak in cdict[college]:
+            readability, grade = getReadabilities(yak)
+            readabilities_arr.append(readability)
+            grades_arr.append(grade)
+        readabilities[college] = sum(readabilities_arr)/len(readabilities_arr)
+        grades[college] = sum(grades_arr)/len(grades_arr)
+    cur.executemany('INSERT INTO college_readability (college_id, average_readability) VALUES (?,?)', readabilities.items())
+    cur.executemany('INSERT INTO college_grade_level (college_id, average_grade_level) VALUES (?,?)', grades.items())
+
+
+def getReadabilities(string):
+    read = Readability(string)
+    return read.FleschReadingEase(), read.FleschKincaidGradeLevel()
+    
+
+
 def test_print():
     print("Hello")
     colleges = cur.fetchall()
     for college in colleges:
         print(college[1])
 
-<<<<<<< HEAD
 populateValuableWordsDB()
-=======
-populateValuableWordsDB()
->>>>>>> ab068a183b682630ef9e27c736a121eec06b02de

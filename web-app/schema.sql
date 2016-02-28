@@ -29,12 +29,11 @@ yak_text text not null
 drop table if exists college_readability;
 create table college_readability (
 college_id integer primary key not null,
-average_readability DOUBLE not null,
-average_grade_level integer
+average_readability DOUBLE not null
 );
 
 drop table if exists college_grade_level;
 create table college_grade_level (
 college_id integer primary key not null,
-average_grade_level integer
+average_grade_level DOUBLE
 );
