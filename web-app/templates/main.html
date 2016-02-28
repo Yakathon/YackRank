@@ -107,16 +107,21 @@
               path: google.maps.SymbolPath.CIRCLE,
               scale: 10
               },
-              draggable: true,
+              draggable: false,
               map: map
             });
+              var previnfo = false
             var contentString = "<h4>"+ location["name"]+ "<h4/>"+ "<h5>Most Frequent Word: "+ location["word"][0] + "</h5>";
           var infowindow = new google.maps.InfoWindow({
              content: contentString
             });
             google.maps.event.addListener(locationCircle,'click', (function(locationCircle,content,infowindow){ 
               return function() {
-              infowindow.open(map,locationCircle);
+              if(previnfo){
+              previnfo.close()}
+                previnfo = infowindow
+              previnfo.open(map,locationCircle);
+          
               };
             })(locationCircle,contentString,infowindow));
         }
