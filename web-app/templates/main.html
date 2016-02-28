@@ -62,38 +62,12 @@
       // This example creates circles on the map, representing readabilitys in North
       // America.
       var array_data
-      $.get("{{ url_for('static', filename='data.json') }}", function( data ) {
-        console.log(data)
-        console.log(data[0]["name"])
-
-      }, "json");
+      $.get("{{ url_for('static', filename='data.json') }}", initMap(data), "json");
       // First, create an object containing LatLng and readability for each location.
-      var locationmap = {
-        chicago: {
-          center: {lat: 41.878, lng: -87.629},
-          readability: 2,
-          name: 'University of Chicago'
-        },
-        newyork: {
-          center: {lat: 40.714, lng: -74.005},
-          readability: 8,
-          name: 'University of Chicago'
-        },
-        losangeles: {
-          center: {lat: 34.052, lng: -118.243},
-          readability: 3,
-          name: 'University of Chicago'
-        },
-        vancouver: {
-          center: {lat: 49.25, lng: -123.1},
-          readability: 6,
-          name: 'University of Chicago'
-        }
-      };
       //var script = document.createElement('script'); 
       //script.src = 'http://localhost:5000/static/data.json';
       console.log(array_data) 
-      function initMap() {
+      function initMap(locationmap) {
         // Create the map.
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
@@ -105,8 +79,9 @@
  
         // Construct the circle for each value in locationmap.
         // Note: We scale the area of the circle based on the readability.
-        for (var location in locationmap) {
+        for (var i=0;i<locationmap.size() ; i++) {
           // Add the circle for this location to the map.
+          var location= locationmap[i]
           var locationCircle = new google.maps.Circle({
             strokeColor: '#FF0000',
             strokeOpalocation: 0.8,
@@ -115,11 +90,11 @@
             fillColor: '#FF0000',
             fillOpalocation: 0.35,
             map: map,
-            position: locationmap[location].center,
-            center: locationmap[location].center,
+            position: {location["latitude"], location["longitude"]},
+            center: {location["latitude"], location["longitude"]},
             radius: Math.sqrt(6) * 100000
           });
-            var contentString = "<h4>"+ locationmap[location].name+ "<h4/>"+ "<h5>Grade Level of Yaks: "+ locationmap[location].readability + "</h5>";
+            var contentString = "<h4>"+ location["name"]+ "<h4/>"+ "<h5>Most Frequent Word: "+ location["word"][0] + "</h5>";
             google.maps.event.addListener(locationCircle, 'click', (function(locationCircle, location) {
         return function() {
             infoWindow.setContent(contentString);
