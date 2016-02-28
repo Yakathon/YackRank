@@ -1,0 +1,16 @@
+{
+	chicago: {
+    	center: {lat: 41.878, 
+    	           lng: -87.629
+				   },
+  	population: 2714856
+		}
+},
+{
+  teasdf: {
+      center: {lat: -20.878, 
+                 lng: -8.629
+           },
+    population: 27148530
+    }
+}
