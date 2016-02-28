@@ -81,7 +81,7 @@
           // Add the circle for this location to the map.
           var location= data[i]
           console.log(location)
-          var locationCircle = new google.maps.Circle({
+          /*var locationCircle = new google.maps.Circle({
             strokeColor: '#FF0000',
             strokeOpalocation: 0.8,
             strokeWeight: 2,
@@ -92,7 +92,18 @@
             position: {lat: location["latitude"], lng: location["longitude"]},
             center: {lat: location["latitude"], lng: location["longitude"]},
             radius: Math.sqrt(6) * 10000
-          });
+          });*/
+            var locationCircle = new google.maps.Marker({
+              position: {lat: location["latitude"], lng: location["longitude"]},
+              center: {lat: location["latitude"], lng: location["longitude"]},
+              clickable: true,
+              icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              scale: 10
+              },
+              draggable: true,
+              map: map
+            });
             var contentString = "<h4>"+ location["name"]+ "<h4/>"+ "<h5>Most Frequent Word: "+ location["word"][0] + "</h5>";
           var infowindow = new google.maps.InfoWindow({
              content: contentString
