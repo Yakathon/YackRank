@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Circles</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title"><img src="logo.png" style="width:45px;height:45px;">YakRank</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+      </nav>
+    </div>
+  </header>
+    <style>
+    p.padding {
+    padding-left: 0.5cm;
+}
+    p.padding2{
+      padding-right: 5px;
+    }
+</style>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">YakRank</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="main.html">Map</a>
+      <a class="mdl-navigation__link" href="about.html">About Us</a>
+      <a class="mdl-navigation__link" href="about.html"><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+        <p class="padding">6god Mode</p><input type="checkbox" id="switch-1" class="mdl-switch__input">
+      </label></a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content"><!-- Your content goes here --></div>
+  </main>
+  <body>
+    <div id="map"></div>
+    
+    <script type="text/javascript" src="data.json"></script>
+    <script>
+      // This example creates circles on the map, representing readabilitys in North
+      // America.
+
+      // First, create an object containing LatLng and readability for each location.
+      var locationmap = {
+  chicago: {
+    center: {lat: 41.878, lng: -87.629},
+    readability: 2,
+    mostword: "wind",
+    name: 'University of Chicago'
+  },
+  newyork: {
+    center: {lat: 40.714, lng: -74.005},
+    readability: 8,
+    mostword: "blowjob",
+    name: 'New York University'
+  },
+  losangeles: {
+    center: {lat: 34.052, lng: -118.243},
+    readability: 3,
+    mostword: "asian",
+    name: 'University of California, Los Angeles'
+  },
+  vancouver: {
+    center: {lat: 49.25, lng: -123.1},
+    readability: 6,
+    mostword: "bacon",
+    name: 'University of Vancouver'
+  }
+};	  
+      function initMap() {
+        // Create the map.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: {lat: 37.090, lng: -95.712},
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+ 
+
+ 
+        // Construct the circle for each value in locationmap.
+        // Note: We scale the area of the circle based on the readability.
+        for (var location in locationmap) {
+          // Add the circle for this location to the map.
+          var locationCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpalocation: 0.8,
+            strokeWeight: 0,
+            clickable: true,
+            fillColor: '#FF0000',
+            fillOpalocation: 0.35,
+            map: map,
+            position: locationmap[location].center,
+            center: locationmap[location].center,
+            radius: Math.sqrt(locationmap[location].readability) * 100000
+          });
+            var contentString = "<h4>"+ locationmap[location].name+ "<h4/>"+ "<h5>Grade Level of Yaks: "+ locationmap[location].readability + "</h5>" + "<h5>Most Common Word: "+ locationmap[location].mostword + "</h5>" ;
+            var infowindow = new google.maps.InfoWindow({
+             content: contentString
+            });
+
+            google.maps.event.addListener(locationCircle,'click', (function(locationCircle,content,infowindow){ 
+              return function() {
+              infowindow.open(map,locationCircle);
+              };
+            })(locationCircle,contentString,infowindow));
+        
+		}
+      }
+		
+    </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYJ6Eo7VHm59DW2f6VAzpHh3ppNwR5S-Q&signed_in=true&callback=initMap">
+    </script>
+  </body>
+</div>
+</html>
