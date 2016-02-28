@@ -35,9 +35,3 @@ for college in  colleges:
     location = Location(lattitude,longitude)
     print(location)
     databasemaker(location, college_id)
-
-
-
-
-
-

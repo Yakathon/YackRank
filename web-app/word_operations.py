@@ -15,9 +15,9 @@ def common_dicts():
     for row in rows:
         cid = row[1]
         if cid not in cdict.keys():
-            cdict[cid] = [row[2]]
+            cdict[cid] = [row[2].lower()]
         else:
-            cdict[cid].append(row[2])
+            cdict[cid].append(row[2].lower())
     return cdict
 
 
@@ -38,7 +38,8 @@ def populate_db():
 
 
 def common_word(all_words):
-    tokens = filter(lambda elem: len(elem) > 3, nltk.word_tokenize(all_words))
+    s = set(nltk.corpus.stopwords.words('english'))
+    tokens = filter(lambda elem: len(elem) > 3 and elem not in s, nltk.word_tokenize(all_words))
     return most_common_word_in_list(tokens)
 
 

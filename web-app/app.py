@@ -3,7 +3,7 @@ from yaklient import *
 from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash
 from contextlib import closing
-from .operations import populate_db
+from word_operations import populate_db
 
 
 DATABASE = 'yaks.db' # Our database
