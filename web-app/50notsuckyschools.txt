@@ -1,38 +1,3 @@
 "Princeton University",40.349287,-74.658233
 "Harvard University",42.380098,-71.116629
 "Yale University",41.3111,-72.9267
-"Stanford University",37.4300,-122.1700
-"Massachusetts Institute of Technology",42.3591,-71.0934
-"University of Pennsylvania",39.9500,-75.1900
-"California Institute of Technology",34.1386,-118.1255
-"Dartmouth College",43.7033,-72.2883
-"Northwestern University",42.0531,-87.6742
-"Brown University",41.8262,-71.4032
-"Vanderbilt University",36.1486,-86.8050
-"Washington University in St. Louis",38.6480,-90.3050
-"UC Berkeley",37.8700,-122.2590 
-"Georgetown University",38.9072,-77.0728
-"UC Los Angeles",34.0722,-118.4441 
-"University of Southern California",34.0205, -118.2856 
-"University of Virginia",38.0350,-78.5050
-"Tufts University",42.4069,-71.1198
-"Wake Forest University",36.1350,-80.2770
-"University of Michigan—Ann Arbor",42.2828,-83.7347
-"Boston College",42.3351,-71.1704
-"University of North Carolina—Chapel Hill",35.9083,-79.0500
-"University of Rochester",43.1283,-77.6283
-"Brandeis University",42.3657,-71.2597 
-"College of William and Mary",37.2711,-76.7075
-"Case Western Reserve University",41.5042,-81.6084
-"UC Santa Barbara",34.4125,-119.8481
-"UC Irvine",33.6454,-117.8426
-"UC San Diego",32.8810,-117.2380
-"Boston University",42.3496,-71.0997
-"Rensselaer Polytechnic Institute",42.7300,-73.6775
-"Tulane University",29.9353,-90.1227
-"UC Davis",38.3402,-121.5312
-"University of Wisconsin—Madison",43.0667,-89.4000
-"Lehigh University",40.6072,-75.3790
-"Northeastern University",42.3389,-71.0903
-"Pennsylvania State University - University Park",40.7961,-77.8628
-"University of Florida",29.650278, -82.343889

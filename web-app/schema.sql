@@ -19,3 +19,22 @@ create table most_valuable_words (
 college_id integer primary key not null,
 word_text text not null
 );
+
+drop table if exists top_yaks;
+create table top_yaks (
+college_id integer primary key not null,
+yak_text text not null
+);
+
+drop table if exists college_readability;
+create table college_readability (
+college_id integer primary key not null,
+average_readability DOUBLE not null,
+average_grade_level integer
+);
+
+drop table if exists college_grade_level;
+create table college_grade_level (
+college_id integer primary key not null,
+average_grade_level integer
+);

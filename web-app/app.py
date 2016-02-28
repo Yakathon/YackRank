@@ -1,12 +1,15 @@
 import sqlite3
 from yaklient import *
 from flask import Flask, request, session, g, redirect, url_for, \
-     abort, render_template, flash
+    abort, render_template, flash
 from contextlib import closing
 from threading import Thread
+from operations import populateValuableWordsDB
+from operations import populateTopYaksDB
 
 
-DATABASE = 'yaks.db'
+
+DATABASE = 'yaks.db' # Our database
 DEBUG = True
 SECRET_KEY = 'gobears'
 USERNAME = 'berkeley'
@@ -20,16 +23,16 @@ def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
 
 def init_db():
-    print("hello")
     with closing(connect_db()) as db:
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
 
+#HELPER METHOD FOR POPULATE RAW YAKS
 def insert(array, words):
-    print(words)
     array.append((float(words[1]), float(words[2]), words[0]))
 
+#GENERATE THE COLLEGES FROM "50notsuckyschools.txt"
 def generateColleges(db):
     db.cursor().execute('DELETE FROM colleges')
     school_pos = []
@@ -40,22 +43,7 @@ def generateColleges(db):
     db.cursor().executemany('INSERT INTO colleges (latitude, longitude, name) VALUES (?,?,?)', school_pos)
     db.commit()
 
-def populateRawYaks():
-    db = connect_db()
-    cur = db.cursor()
-    cur.execute('DELETE FROM raw_yaks')
-    db.commit()
-    cur.execute("SELECT * FROM colleges")
-    colleges = cur.fetchall()
-    for college in colleges:
-        college_id = college[0]
-        lattitude = college[1]
-        longitude = college[2]
-        print(college[3])
-        location = Location(lattitude,longitude)
-        print(location)
-        addYaksFromCollege(location, college_id)
-
+#HELPER METHOD FOR POPULATE RAW YAKS    
 def addYaksFromCollege(location,college_id):
     db = connect_db()
     cur = db.cursor()
@@ -69,24 +57,27 @@ def addYaksFromCollege(location,college_id):
                 print("uh oh", yak)
             db.commit()
 
-def getTopYaks():
+# PULL YAKS USING YAKLIENT
+def populateRawYaks():
     db = connect_db()
     cur = db.cursor()
-    cur.execute("SELECT c.name, y.yak_text, y.upvotes FROM raw_yaks as y, colleges as c WHERE c.college_id = y.college_id GROUP BY y.college_id ORDER BY y.upvotes;")
-    print(cur.fetchall)
-    yaks = cur.fetchall()
-    top_yaks = {}
-    for yak in yaks:
-        print(yak)
-        print(yak[0])
-        print(yak[1])
-        top_yaks[yak[0]] = yak[1]
-    print("top_yaks dict ", top_yaks)
-    return top_yaks
+    cur.execute('DELETE FROM raw_yaks')
+    db.commit()
+    cur.execute("SELECT * FROM colleges")
+    colleges = cur.fetchall()
+    for college in colleges:
+        print(college[3])
+        college_id = college[0]
+        lattitude = college[1]
+        longitude = college[2]
+        location = Location(lattitude,longitude)
+        addYaksFromCollege(location, college_id)
 
-def publishTopYaks():
+def updateYaks():
     populateRawYaks()
-    render_template('home.html', top_yaks=getTopYaks())
+    #populateValuableWordsDB()
+    #populateTopYaksDB()
+
 
 @app.before_request
 def before_request():
@@ -99,15 +90,36 @@ def teardown_request(exception):
         db.close()
 
 @app.route('/')
+@app.route('/index')
 def home():
-    populateRawYaks()
-    top_yaks = getTopYaks()
-    print("##########", top_yaks == None, "##########")
-    return render_template('home.html', top_yaks=top_yaks)
+    db = connect_db()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM top_yaks")
+    yaks = cur.fetchall()
+    print("printing yaks")
+    for yak in yaks:
+        print(yak)
+    print("printed yaks")
+    return render_template('home.html')
+
+# @app.route('/topwords')
+# def topwords():
+
+
+# @app.route('/top_yaks')
+# def topwords():
+
 
 if __name__ == '__main__':
     init_db()
     db = connect_db()
     db.text_factory = str
+    #generates the colleges to pull yaks from
+    print("Generating colleges")
     generateColleges(db)
-    app.run(debug = True)
+    print("Generated colleges")
+    #pulls initial set of yaks from each college
+    print("Updating Yaks")
+    updateYaks()
+    print("Updated Yaks")
+    app.run(debug=True)
