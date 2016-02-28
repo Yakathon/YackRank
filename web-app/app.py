@@ -31,10 +31,15 @@ class Config(object):
     SCHEDULER_VIEWS_ENABLED = True
 
 
+<<<<<<< HEAD
 app = Flask(__name__)
 app.config.from_object(Config())
 
 
+=======
+app = Flask(__name__, static_folder='static')
+app.config.from_object(__name__)
+>>>>>>> ab068a183b682630ef9e27c736a121eec06b02de
 
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
@@ -118,6 +123,10 @@ def home():
         print(yak)
     print("printed yaks")
     return render_template('home.html')
+
+@app.route('/<path:filename>')
+def send_file(filename):  
+    return send_from_directory(app.static_folder, filename)
 
 # @app.route('/topwords')
 # def topwords():

@@ -88,4 +88,8 @@ def test_print():
     for college in colleges:
         print(college[1])
 
+<<<<<<< HEAD
 populateValuableWordsDB()
+=======
+populateValuableWordsDB()
+>>>>>>> ab068a183b682630ef9e27c736a121eec06b02de
