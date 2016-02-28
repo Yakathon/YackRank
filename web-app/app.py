@@ -7,14 +7,9 @@ from contextlib import closing
 from threading import Thread
 from word_operations import populateValuableWordsDB
 from word_operations import populateTopYaksDB
-<<<<<<< HEAD
-=======
 from word_operations import populateReadabilityTables
 from json_converter import getJson
 import os
-
-
->>>>>>> a18622cbf2dbd915c2179bab4d5e67d0818f4a20
 
 DATABASE = 'yaks.db' # Our database
 DEBUG = True
@@ -35,17 +30,9 @@ class Config(object):
             
     SCHEDULER_VIEWS_ENABLED = True
 
-<<<<<<< HEAD
-app = Flask(__name__)
-app.config.from_object(Config())
 
 app = Flask(__name__, static_folder='static')
 app.config.from_object(__name__)
-
-=======
-app = Flask(__name__, static_folder='static')
-app.config.from_object(__name__)
->>>>>>> a18622cbf2dbd915c2179bab4d5e67d0818f4a20
 
 def connect_db():
     return sqlite3.connect("yaks.db")
@@ -64,7 +51,7 @@ def insert(array, words):
 def generateColleges(db):
     db.cursor().execute('DELETE FROM colleges')
     school_pos = []
-    with open('50notsuckyschools.txt') as f:
+    with open('lessthan50schools.txt') as f:
         for line in f:
             words = [i.strip() for i in line.split(',')]
             insert(school_pos, words)
@@ -161,7 +148,6 @@ def home():
     #return send_from_directory(app.static_folder, filename)
 @app.route('/json', methods=['GET'])
 def getStuff():
-    print("help plz")
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
     json_url = os.path.join(SITE_ROOT, "static", "data.json")
     data = json.load(open(json_url))
