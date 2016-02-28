@@ -52,22 +52,26 @@
   chicago: {
     center: {lat: 41.878, lng: -87.629},
     readability: 2,
+    mostword: "wind",
     name: 'University of Chicago'
   },
   newyork: {
     center: {lat: 40.714, lng: -74.005},
     readability: 8,
-    name: 'University of Chicago'
+    mostword: "blowjob",
+    name: 'New York University'
   },
   losangeles: {
     center: {lat: 34.052, lng: -118.243},
     readability: 3,
-    name: 'University of Chicago'
+    mostword: "asian",
+    name: 'University of California, Los Angeles'
   },
   vancouver: {
     center: {lat: 49.25, lng: -123.1},
     readability: 6,
-    name: 'University of Chicago'
+    mostword: "bacon",
+    name: 'University of Vancouver'
   }
 };	  
       function initMap() {
@@ -87,7 +91,7 @@
           var locationCircle = new google.maps.Circle({
             strokeColor: '#FF0000',
             strokeOpalocation: 0.8,
-            strokeWeight: 2,
+            strokeWeight: 0,
             clickable: true,
             fillColor: '#FF0000',
             fillOpalocation: 0.35,
@@ -96,16 +100,18 @@
             center: locationmap[location].center,
             radius: Math.sqrt(locationmap[location].readability) * 100000
           });
-            var contentString = "<h4>"+ locationmap[location].name+ "<h4/>"+ "<h5>Grade Level of Yaks: "+ locationmap[location].readability + "</h5>";
-            google.maps.event.addListener(locationCircle, 'click', (function(locationCircle, location) {
-        return function() {
-            infoWindow.setContent(contentString);
-            infoWindow.setPosition(locationCircle.center);
-            infoWindow.open(map);
-        }
-      })(locationCircle, location));
-        }
-		
+            var contentString = "<h4>"+ locationmap[location].name+ "<h4/>"+ "<h5>Grade Level of Yaks: "+ locationmap[location].readability + "</h5>" + "<h5>Most Common Word: "+ locationmap[location].mostword + "</h5>" ;
+            var infowindow = new google.maps.InfoWindow({
+             content: contentString
+            });
+
+            google.maps.event.addListener(locationCircle,'click', (function(locationCircle,content,infowindow){ 
+              return function() {
+              infowindow.open(map,locationCircle);
+              };
+            })(locationCircle,contentString,infowindow));
+        
+		}
       }
 		
     </script>
