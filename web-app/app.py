@@ -7,14 +7,9 @@ from contextlib import closing
 from threading import Thread
 from word_operations import populateValuableWordsDB
 from word_operations import populateTopYaksDB
-<<<<<<< HEAD
-=======
 from word_operations import populateReadabilityTables
 from json_converter import getJson
 import os
-
-
->>>>>>> a18622cbf2dbd915c2179bab4d5e67d0818f4a20
 
 DATABASE = 'yaks.db' # Our database
 DEBUG = True
@@ -35,17 +30,8 @@ class Config(object):
             
     SCHEDULER_VIEWS_ENABLED = True
 
-<<<<<<< HEAD
-app = Flask(__name__)
-app.config.from_object(Config())
-
 app = Flask(__name__, static_folder='static')
 app.config.from_object(__name__)
-
-=======
-app = Flask(__name__, static_folder='static')
-app.config.from_object(__name__)
->>>>>>> a18622cbf2dbd915c2179bab4d5e67d0818f4a20
 
 def connect_db():
     return sqlite3.connect("yaks.db")
