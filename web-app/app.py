@@ -24,7 +24,7 @@ class Config(object):
             'func': '__main__:updateYaks',
             'args': (),
             'trigger': 'interval',
-            'minutes': 10
+            'minutes': 1
             }
             ]
             
@@ -145,14 +145,6 @@ def home():
 def send_file(filename):  
     return send_from_directory(app.static_folder, filename)
 
-# @app.route('/topwords')
-# def topwords():
-
-
-# @app.route('/top_yaks')
-# def topwords():
-
-
 if __name__ == '__main__':
     init_db()
     db = connect_db()
@@ -166,9 +158,9 @@ if __name__ == '__main__':
     updateYaks()
     print("Updated Yaks")
 
-    # scheduler = APScheduler()
-    # scheduler.init_app(app)
-    # scheduler.start()
+    scheduler = APScheduler()
+    scheduler.init_app(app)
+    scheduler.start()
     app.run(debug=False)
 
 

@@ -79,13 +79,13 @@ def getTopYaks():
     top_yaks = {}
     for yak in yaks:
         print(yak)
-        top_yaks[yak[0]] = yak[1]
+        top_yaks[yak[0]] = yak[2]
     return top_yaks
 
 
 def populateReadabilityTables():
-    cur.execute('DELETE FROM college_readability')
-    cur.execute('DELETE FROM college_grade_level')
+    cur.execute('DELETE FROM college_readability;')
+    cur.execute('DELETE FROM college_grade_level;')
     cdict = common_dicts()
     grades = {}
     readabilities = {}
@@ -98,9 +98,12 @@ def populateReadabilityTables():
             grades_arr.append(grade)
         readabilities[college] = sum(readabilities_arr)/len(readabilities_arr)
         grades[college] = sum(grades_arr)/len(grades_arr)
-    cur.executemany('INSERT INTO college_readability (college_id, average_readability) VALUES (?,?)', readabilities.items())
-    cur.executemany('INSERT INTO college_grade_level (college_id, average_grade_level) VALUES (?,?)', grades.items())
-
+    print("!!!!!!!!!", readabilities)
+    print(grades, "!!!!!!!!!!!!")
+    cur.executemany('INSERT INTO college_readability (college_id, average_readability) VALUES (?,?);', readabilities.items())
+    con.commit()
+    cur.executemany('INSERT INTO college_grade_level (college_id, average_grade_level) VALUES (?,?);', grades.items())
+    con.commit()
 
 def getReadabilities(string):
     read = Readability(string)
