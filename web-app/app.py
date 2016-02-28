@@ -140,6 +140,9 @@ def home():
     print("printed yaks")
     return render_template('main.html')
 
+@app.route('/about.html')
+def about():
+    return render_template('about.html')
 #@app.route('/index')
 
 #@app.route('<filename>')
