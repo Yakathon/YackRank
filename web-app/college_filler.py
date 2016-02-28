@@ -22,4 +22,4 @@ def generateColleges():
     conn.close()
 
 
-generateColleges();
+#generateColleges();

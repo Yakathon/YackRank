@@ -1,3 +1,4 @@
 "Princeton University",40.349287,-74.658233
 "Harvard University",42.380098,-71.116629
 "Yale University",41.3111,-72.9267
+"Stanford University",37.4300,-122.1700
