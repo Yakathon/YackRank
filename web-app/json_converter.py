@@ -18,4 +18,4 @@ def getJson():
 	print(data)
 	#return data
 
-#getJson()
+getJson()

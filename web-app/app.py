@@ -64,7 +64,7 @@ def insert(array, words):
 def generateColleges(db):
     db.cursor().execute('DELETE FROM colleges')
     school_pos = []
-    with open('50notsuckyschools.txt') as f:
+    with open('lessthan50schools.txt') as f:
         for line in f:
             words = [i.strip() for i in line.split(',')]
             insert(school_pos, words)
@@ -161,7 +161,6 @@ def home():
     #return send_from_directory(app.static_folder, filename)
 @app.route('/json', methods=['GET'])
 def getStuff():
-    print("help plz")
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
     json_url = os.path.join(SITE_ROOT, "static", "data.json")
     data = json.load(open(json_url))
