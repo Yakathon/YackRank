@@ -158,7 +158,7 @@ def getStuff():
 def serve_static(filename):
     print(filename)
     root_dir = os.path.dirname(os.getcwd())
-    return send_from_directory(os.path.join(root_dir, 'static', ''), filename[:12])
+    return send_from_directory(os.path.join(root_dir, 'static', ''), filename)
 # @app.route('/topwords')
 # def topwords():
 
