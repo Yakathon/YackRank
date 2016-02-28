@@ -35,10 +35,6 @@ class Config(object):
 app = Flask(__name__, static_folder='static')
 app.config.from_object(__name__)
 
-app = Flask(__name__, static_folder='static')
-app.config.from_object(Config())
-
-
 def connect_db():
     return sqlite3.connect("yaks.db")
 
@@ -128,7 +124,7 @@ def home():
     for yak in yaks:
         print(yak)
     print("printed yaks")
-    return render_template('home.html')
+    return render_template('main.html')
 
     cur.execute("SELECT * FROM college_readability")
     yaks = cur.fetchall()
@@ -143,11 +139,6 @@ def home():
     for yak in yaks:
         print(yak)
     print("printed yaks")
-    return render_template('home.html')
-
-@app.route('/<path:filename>')
-def send_file(filename):  
-    return send_from_directory(app.static_folder, filename)
     return render_template('main.html')
 
 #@app.route('/index')
@@ -165,7 +156,7 @@ def getStuff():
     print(data)
     return data
 
-@app.route('/js/<path:filename>')
+@app.route('/<path:filename>')
 def serve_static(filename):
     root_dir = os.path.dirname(os.getcwd())
     return send_from_directory(os.path.join(root_dir, 'static', ''), filename)

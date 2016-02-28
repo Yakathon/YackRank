@@ -64,8 +64,7 @@
       var array_data
       $.get("{{ url_for('static', filename='data.json') }}", function( data ) {
         console.log(data)
-        var json = JSON.parse(data[0])
-        console.log(json["name"])
+        console.log(data[0]["name"])
 
       }, "json");
       // First, create an object containing LatLng and readability for each location.
