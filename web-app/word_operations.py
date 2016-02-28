@@ -111,6 +111,7 @@ def populateReadabilityTables():
         grades_arr = []
         for yak in cdict[college]:
             readability, grade = getReadabilities(yak)
+            print(readability, grade)
             readabilities_arr.append(readability)
             grades_arr.append(grade)
         readabilities[college] = sum(readabilities_arr)/len(readabilities_arr)
@@ -134,3 +135,4 @@ def test_print():
     colleges = cur.fetchall()
     for college in colleges:
         print(college[1])
+populateReadabilityTables()
