@@ -49,7 +49,7 @@ def populateValuableWordsDB():
 
 def common_word(all_words):
     s = set(nltk.corpus.stopwords.words('english'))
-    tokens = filter(lambda elem: len(elem) > 3 and elem not in s, nltk.word_tokenize(all_words))
+    tokens = filter(lambda elem: len(elem) > 3 and elem not in s and elem!= "like", nltk.word_tokenize(all_words))
     return most_common_word_in_list(tokens)
 
 
@@ -69,7 +69,8 @@ def most_common_word_in_list(L):
             count += 1
             min_index = min(min_index, where)
         return count, -min_index
-    return max(groups, key=_auxfun)[0]
+        word = max(groups, key=_auxfun)[0]
+    return
 
 def populateTopYaksDB():
     con = sqlite3.connect('yaks.db')
