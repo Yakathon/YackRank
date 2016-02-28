@@ -134,5 +134,3 @@ def test_print():
     colleges = cur.fetchall()
     for college in colleges:
         print(college[1])
-
-populateValuableWordsDB()

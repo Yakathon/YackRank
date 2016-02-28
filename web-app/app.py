@@ -8,6 +8,7 @@ from threading import Thread
 from word_operations import populateValuableWordsDB
 from word_operations import populateTopYaksDB
 from word_operations import populateReadabilityTables
+from spellcheck import populateNumYaksDB
 from json_converter import getJson
 import os
 
@@ -93,6 +94,7 @@ def updateYaks():
     populateValuableWordsDB()
     populateTopYaksDB()
     populateReadabilityTables()
+    populateNumYaksDB()
 
 
 @app.before_request

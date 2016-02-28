@@ -1,4 +1,4 @@
-import enchant
+#import enchant
 import sqlite3
 import nltk
 import itertools
@@ -33,22 +33,22 @@ def common_words_algorithm():
     
 def spellcheck(all_words):
 	s = set(nltk.corpus.stopwords.words('english'))
-	d = enchant.Dict("en_US")
+	#d = enchant.Dict("en_US")
 	
 	tokens = nltk.word_tokenize(all_words)
 	count = 0
-	for word in tokens:
-	    if(d.check(word) == False):
+	#for word in tokens:
+	    #if(d.check(word) == False):
 	    	
-	    	count = 1 + count
+	    	#count = 1 + count
 
 	return count/len(tokens), len(tokens)
 
-def populateValuableWordsDB():
+def populateNumYaksDB():
     con = sqlite3.connect('yaks.db')
     cur = con.cursor()
     con.text_factory = str
-    cur.execute('DELETE FROM most_valuable_words')
+    cur.execute('DELETE FROM num_yaks')
 
     word_dict, num_dict = common_words_algorithm()
     for i in num_dict.items():
@@ -57,8 +57,6 @@ def populateValuableWordsDB():
     con.commit()
     con.close()
 
-populateValuableWordsDB()
-print(common_words_algorithm())
 
 
 
